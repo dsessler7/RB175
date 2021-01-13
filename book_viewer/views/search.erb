@@ -1,0 +1,16 @@
+<h2 class="content-subhead">Search</h2>
+
+<form action="/search" method="get">
+  <input name="query" value="<%= params[:query] %>">
+  <button type="submit">Search</button>
+</form>
+
+<% if params[:query] && @titles.empty? %>
+  <p>Sorry, no matches were found.</p>
+<% end %>
+
+<ul>
+<% @titles.each_with_index do |title, index| %>
+  <li><a href="/chapters/<%= @filenames[index].match(/[0-9]+/)[0] %>"><%= title %></a></li>
+<% end %>
+</ul>
